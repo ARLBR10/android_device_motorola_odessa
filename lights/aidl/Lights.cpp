@@ -30,6 +30,7 @@ namespace {
 #define STRINGIFY(x) STRINGIFY_INNER(x)
 
 #define LEDS(x) PPCAT(/sys/class/leds, x)
+#define LCD_ATTR(x) STRINGIFY(PPCAT(LEDS(lcd-backlight), x))
 #define WHITE_ATTR(x) STRINGIFY(PPCAT(LEDS(charging), x))
 /* clang-format on */
 
@@ -82,14 +83,17 @@ Lights::Lights() {
     std::map<int, std::function<void(int id, const HwLightState&)>> lights_{
             {(int)LightType::NOTIFICATIONS,
              [this](auto&&... args) { setLightNotification(args...); }},
-            {(int)LightType::BATTERY, [this](auto&&... args) { setLightNotification(args...); }},
-            {(int)LightType::BACKLIGHT, {}}};
+             {(int)LightType::BATTERY, [this](auto&&... args) { setLightNotification(args...); }},
+             {(int)LightType::BACKLIGHT,
+              [this](auto&&... args) { setLightBacklight(args...); }}};
 
     std::vector<HwLight> availableLights;
     for (auto const& pair : lights_) {
         int id = pair.first;
         HwLight hwLight{};
         hwLight.id = id;
+        hwLight.ordinal = 0;
+        hwLight.type = static_cast<LightType>(id);
         availableLights.emplace_back(hwLight);
     }
     mAvailableLights = availableLights;
@@ -102,6 +106,14 @@ Lights::Lights() {
     } else {
         max_led_brightness_ = kDefaultMaxLedBrightness;
         LOG(ERROR) << "Failed to read max LED brightness, fallback to " << kDefaultMaxLedBrightness;
+    }
+
+    if (ReadFileToString(LCD_ATTR(max_brightness), &buf)) {
+        max_backlight_brightness_ = std::stoi(buf);
+    } else {
+        max_backlight_brightness_ = kDefaultMaxLedBrightness;
+        LOG(ERROR) << "Failed to read max backlight brightness, fallback to "
+                   << kDefaultMaxLedBrightness;
     }
 }
 
@@ -122,6 +134,11 @@ ndk::ScopedAStatus Lights::getLights(std::vector<HwLight>* lights) {
         lights->push_back(*i);
     }
     return ndk::ScopedAStatus::ok();
+}
+
+void Lights::setLightBacklight(int /* id */, const HwLightState& state) {
+    WriteToFile(LCD_ATTR(brightness),
+                RgbaToBrightness(state.color, max_backlight_brightness_));
 }
 
 void Lights::setLightNotification(int id, const HwLightState& state) {

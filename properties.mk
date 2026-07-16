@@ -16,6 +16,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Sensor
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.hardware.sensors=odessa \
+    ro.hardware.sensors=odessa
+
+PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.sensors.mot_ltv=true \
     ro.vendor.sensors.glance_approach=false
