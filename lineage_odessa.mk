@@ -39,9 +39,9 @@ TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
 # Build info
-BUILD_FINGERPRINT := "motorola/odessa_retail/odessa:11/RPAS31.Q2-59-17-4-5-5/af8e3:user/release-keys"
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=odessa_retail \
-    PRIVATE_BUILD_DESC="odessa_retail-user 11 RPAS31.Q2-59-17-4-5-5 af8e3 release-keys"
+    BuildDesc="odessa_retail-user 11 RPAS31.Q2-59-17-4-5-5 af8e3 release-keys" \
+    BuildFingerprint=motorola/odessa_retail/odessa:11/RPAS31.Q2-59-17-4-5-5/af8e3:user/release-keys \
+    DeviceProduct=odessa_retail
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola

@@ -1,4 +1,5 @@
-# All unpinned blobs below are extracted from Odessa RPAS31.Q2-59-17-4-5-5
+# Extracted from tequila-uno-20240117-0816-UNOFFICIAL-odessa.zip
+# SHA-256: 2eebc8ee17bcbc3a28d96b7b1dbf1b6769c6281d437194fbf582f0e2b365fdb6
 
 # ACDB
 vendor/etc/acdbdata/adsp_avs_config.acdb
@@ -23,7 +24,7 @@ vendor/etc/camera/arcsoft_calibration_u_dc.bin
 vendor/etc/camera/dual_golden_depth.bin
 vendor/etc/camera/dual_golden_wide.bin
 vendor/etc/camera/vidhance_calibration
-vendor/lib/libcamera_nn_stub.so
+vendor/lib/libcamera_nn_stub.so;DISABLE_DEPS
 vendor/lib/libcamxfdalgov7.so
 vendor/lib/libcamxfdalgov8.so
 vendor/lib/libcamxfdengine.so
@@ -128,9 +129,6 @@ vendor/lib64/libvidhance.so
 # Camera (Firmware)
 vendor/firmware/CAMERA_ICP.elf
 
-# Charger
-vendor/bin/charge_only_mode
-
 # Display (Calibration Data)
 vendor/etc/qdcm_calib_data_mipi_mot_vid_auo_1080p_681.xml
 vendor/etc/qdcm_calib_data_mipi_mot_vid_txd_1080p_681.xml
@@ -144,7 +142,6 @@ vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-ets2.rc
 vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-fpc2.rc
 vendor/etc/init/init.ets.rc
 vendor/lib64/com.fingerprints.extension@1.0.so
-vendor/lib64/com.motorola.hardware.biometric.fingerprint@1.0.so
 vendor/lib64/libets_fp_et5.so
 vendor/lib64/libets_teeclient.so
 vendor/lib64/vendor.egistec.hardware.fingerprint@2.0.so
@@ -159,8 +156,8 @@ vendor/firmware/ipa_fws.elf
 vendor/firmware/ipa_fws.mdt
 
 # Moto Permissions
-product/etc/permissions/com.motorola.camera2.content.ai.xml:vendor/etc/permissions/com.motorola.camera2.content.ai.xml
-product/etc/permissions/com.motorola.camera2.whitney.xml:vendor/etc/permissions/com.motorola.camera2.whitney.xml
+vendor/etc/permissions/com.motorola.camera2.content.ai.xml
+vendor/etc/permissions/com.motorola.camera2.whitney.xml
 
 # NFC
 vendor/lib64/libpn557_fw.so
