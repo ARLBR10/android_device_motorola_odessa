@@ -3,19 +3,10 @@
 #
 
 # BPF
-#
-# The 4.14 kernel carries a backport of the 5.10 BPF subsystem (see
-# kernel/motorola/sm6150, branch wip/bpf-backport-4.14.357), taken from the
-# shared LineageOS msm-4.14 effort. Android's netbpfload refuses to run on a
-# kernel older than 5.4 and this override is how it is told the required
-# features are present. 5.10.239 is the level the backported code came from,
-# and is the same value the xiaomi sm6125/sm6150 and oneplus sm8150 trees use.
-#
-# This must never be set on a kernel without that backport: it is a claim, not
-# a workaround, and setting it alone only moves the failure later (the loader
-# then takes the BTF path and uses map types the kernel would not have).
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.bpf.kver_override=5.10.239
+# The full BPF backport currently bootloops before Recovery. Keep the kernel at
+# OpenELA 4.14.357 commit 70aea3b5f901 and do not advertise 5.10 BPF support
+# until a hardware-booting backport is restored. Android 16 cannot boot fully
+# in this state because netbpfload rejects an unmodified 4.14 kernel.
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
