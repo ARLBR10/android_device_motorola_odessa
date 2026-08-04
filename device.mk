@@ -54,6 +54,13 @@ PRODUCT_PACKAGES += \
     init.oem.fingerprint.sh \
     init.oem.fingerprint2.sh
 
+# Touchscreen firmware for Recovery
+PRODUCT_COPY_FILES += \
+    vendor/motorola/odessa/proprietary/vendor/firmware/FT8006U_Pramboot.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/FT8006U_Pramboot.bin \
+    vendor/motorola/odessa/proprietary/vendor/firmware/focaltech-txd-ft8756-06-0000-odessa.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/focaltech-txd-ft8756-06-0000-odessa.bin \
+    vendor/motorola/odessa/proprietary/vendor/firmware/novatek_ts_fw.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/novatek_ts_fw.bin \
+    vendor/motorola/odessa/proprietary/vendor/firmware/novatek_ts_mp.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/novatek_ts_mp.bin
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.lights-service.odessa

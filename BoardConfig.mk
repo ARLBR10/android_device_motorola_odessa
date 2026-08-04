@@ -31,5 +31,16 @@ TARGET_KERNEL_CONFIG := vendor/odessa_defconfig
 TARGET_MODULE_ALIASES += \
     snd-soc-aw882xx.ko:snd_smartpa_aw882xx.ko
 
+# Kernel modules - Recovery
+RECOVERY_KERNEL_MODULES := \
+    drivers/sensors/sensors_class.ko \
+    drivers/input/touchscreen/nova_0flash_mmi/nova_0flash_mmi.ko \
+    drivers/input/touchscreen/focaltech_0flash_mmi/focaltech_0flash_mmi.ko
+
+BOARD_RECOVERY_KERNEL_MODULES_LOAD := \
+    sensors_class.ko \
+    nova_0flash_mmi.ko \
+    focaltech_0flash_mmi.ko
+
 # SELinux
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
