@@ -11,7 +11,7 @@
 #
 # Never set this on a kernel without the backport: it is a feature claim, not a
 # workaround, and makes the loader use BTF and map types absent from plain 4.14.
-PRODUCT_VENDOR_PROPERTIES += \
+PRODUCT_SYSTEM_PROPERTIES += \
     ro.bpf.kver_override=5.10.239
 
 # Camera
