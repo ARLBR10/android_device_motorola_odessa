@@ -88,6 +88,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-service.multihal
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/permissions/odessa_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/odessa_hardware.xml
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
